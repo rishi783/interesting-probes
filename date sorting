@@ -1,0 +1,42 @@
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+void swap(int *xp, int *yp)
+{
+    int temp = *xp;
+    *xp = *yp;
+    *yp = temp;
+}
+
+int main() {
+
+    int n,i,j;
+    scanf("%d",&n);
+    int d[n],m[n],y[n];
+    for(i=0;i<n;i++)  scanf("%d %d %d",&d[i],&m[i],&y[i]);  
+    for(i=0;i<n;i++)
+    {
+        int min=i;
+        for(j=i+1;j<n;j++)
+        {
+            if(y[min]>y[j])
+                min=j;
+            else if(y[min]==y[j])
+            {
+                if(m[min]>m[j]) min=j;
+                else if(m[min]==m[j])
+                {
+                    if(d[min]>d[j]) min=j;
+                }
+            }
+        }
+            swap(&y[min],&y[i]);
+            swap(&m[min],&m[i]);
+            swap(&d[min],&d[i]);
+            
+        
+    }
+     for(i=0;i<n;i++) printf("%d %d %d\n",d[i],m[i],y[i]);
+    return 0;
+}
