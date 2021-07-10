@@ -1,0 +1,40 @@
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+long stack[100000];
+long max[100000];
+int t1=-1;
+int t2=-1; 
+int main() {
+
+    long n;
+    long a;
+    long b;
+    scanf("%ld",&n);
+    while(n--)
+    {
+         scanf("%ld",&a);
+        
+            if(a==1)
+            {
+                scanf("%ld",&b);
+                if(t2==-1 || max[t2]<=b)
+                    max[++t2]=b;
+                stack[++t1]=b;
+            }
+           else if(a==2)
+            {
+                if(stack[t1]==max[t2])
+                   t2--;
+                t1--;
+            }
+            else
+            {
+                    printf("%ld\n",max[t2]);
+            }
+        
+        }
+    
+    return 0;
+}
