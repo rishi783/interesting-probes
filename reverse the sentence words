@@ -1,0 +1,48 @@
+#include<stdio.h>
+#include<conio.h>
+#include<string.h>
+void senrev(char c[],int i,int j)     // to reverse whatever the string is given
+{
+    char temp;
+    while(i<j)
+    {
+        temp=c[i];
+        c[i]=c[j];
+        c[j]=temp;
+        i++;
+        j--;
+    }
+}
+void wordrev(char c[],int n)
+{
+    senrev(c,0,n-1);         //reverse the string totally first
+    int start=0;
+    int end;
+    while(!0)
+    {
+        while(c[start]==' ')
+        {
+            ++start;
+        }
+        if(start>=n-1) 
+          break;
+        
+        end=start+1;
+        while(end<=n-1 && c[end]!=' ')    //to reach the space for separating the word
+        {
+            ++end;
+        }
+        senrev(c,start,end-1);    //after separating the first word reverse it back
+
+        start=end;  // now the index moves to the next word and the above process gets repeated
+    }
+}
+int main()
+{
+    char c[100];
+    scanf("%[^\n]s",c);
+    int n=strlen(c);
+    wordrev(c,n);
+    printf("%s",c);
+    return 0;
+}
